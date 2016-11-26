@@ -29,7 +29,16 @@ module.exports = {
         cacheDirectory: 'babel_cache',
         presets: debug ? ['react', 'es2015', 'react-hmre'] : ['react', 'es2015']
       }
-    }]
+    },{
+      test: /\.scss$/,
+      include: path.join(__dirname, 'src'),
+      exclude: /(node_modules)/,
+      //loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
+      loaders: ['style', 'css', 'sass']
+    }, {
+      test: /\.css$/,
+      loader: 'style-loader!css-loader'
+    }, ]
   },
   plugins: debug ? [] : [
     new webpack.DefinePlugin({
